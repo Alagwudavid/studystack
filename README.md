@@ -1,123 +1,309 @@
-# Bitroot
+# StudyStack
 
 ## 🌍 The Problem
 
-Learning a new language and understanding a different culture can be challenging, often requiring expensive resources and lacking real-world interaction. Existing platforms are often limited in scope, focusing only on language or culture, and fail to empower content creators while missing the crucial social aspect of learning.
+Students today face fragmented experiences when trying to connect with peers, find academic opportunities, discover relevant communities, and organize study groups. Existing platforms either focus on professional networking, general social media, or isolated learning tools, missing the unique needs of students seeking meaningful academic connections and collaborative learning opportunities.
 
-## ✨ Our Solution: Bitroot
+## ✨ Our Solution: StudyStack
 
-**Bitroot** is an all-in-one social language and culture learning platform that uniquely blends Duolingo's engaging, gamified lessons with Udemy's robust creator economy and adds a vibrant social learning community. We provide a dynamic space where users can learn new languages and explore diverse cultural content through interactive lessons, podcasts, community-led courses, and social interactions. Crucially, Bitroot empowers creators by providing a platform to share their knowledge, engage with learners, and earn revenue directly through multiple monetization streams.
+**StudyStack** is a comprehensive social platform designed specifically for students to connect with each other, discover opportunities, join communities, and create study groups. We provide a dynamic space where students can share knowledge, collaborate on projects, find internships and jobs, participate in events, and build lasting academic relationships in a supportive, student-focused environment.
 
-## 🚀 Features
+## 🚀 Core Features
 
-### For Learners
+### Social Connection & Networking
 
-*   **Gamified Language Lessons:** Fun and interactive lessons in the style of Duolingo to keep learners engaged.
-*   **Interactive Cultural Modules:** Dive deep into cultural contexts, including food, music, customs, and more.
-*   **Social Learning Hub:** Share achievements, ask questions, collaborate on projects, and learn from the community.
-*   **Advanced Reaction System:** Express engagement with content through multiple reaction types (like, love, celebrate, support, insightful, funny).
-*   **Podcasts and Video Courses:** Learn from native speakers and cultural experts.
-*   **Community Forums and Study Groups:** Connect with other learners and practice in a supportive environment.
-*   **Progress Tracking & Daily Streaks:** Stay motivated and monitor your learning journey with visual progress indicators.
-*   **AI Learning Assistant (Premium):** Get personalized feedback, instant translations, cultural insights, and smart quiz generation.
+- **Student Profiles:** Create comprehensive profiles showcasing your academic interests, skills, and achievements
+- **Social Feed:** Share posts, updates, achievements, and questions with your network
+- **Advanced Reaction System:** Express engagement with content through multiple reaction types (like, love, celebrate, support, insightful, funny)
+- **Follow System:** Connect with fellow students, educators, and industry professionals
+- **Direct Messaging:** Private conversations and group chats for seamless communication
+- **News Feed:** Stay updated with relevant academic news and trending topics
 
-### For Creators & Educators
+### Study Groups & Communities
 
-*   **Intuitive Course Builder:** Easily create engaging audio, video, text, and quiz-based content.
-*   **Creator Dashboard:** Track analytics and earnings with a comprehensive dashboard.
-*   **Award System:** Receive awards from learners as appreciation for valuable content and teaching.
-*   **Social Engagement Tools:** Build community through posts, tips, collaborations, and direct interactions.
-*   **Instant Payouts:** Get paid directly for enrollments and community engagement.
-*   **Community Management Tools:** Engage with your students and build a loyal following.
-*   **Podcast Hosting:** Seamlessly host your language and culture-related podcasts.
-*   **Expert Verification:** Get verified as an expert or educator to build credibility and trust.
+- **Study Groups:** Create and join subject-specific study groups for collaborative learning
+- **Communities:** Discover and participate in communities based on interests, majors, or topics
+- **Classroom Integration:** Digital classroom spaces for course-specific discussions and resources
+- **Channels:** Topic-based channels for focused discussions and resource sharing
+- **Collaborative Projects:** Work together on academic projects and assignments
+- **Event Organization:** Create and manage study sessions, meetups, and academic events
 
-### Social Learning Features
+### Opportunities & Career
 
-*   **Post Types:** Share achievements, tips, questions, projects, milestones, and collaborative opportunities.
-*   **Rich Media Support:** Upload images, videos, and documents to enhance your posts.
-*   **Engagement Analytics:** Track likes, comments, shares, saves, and awards on your content.
-*   **Study Communities:** Join category-specific and language-specific communities.
-*   **Learning Streaks:** Showcase and celebrate your consistency with streak tracking.
-*   **Collaborative Learning:** Find study partners and join group projects.
+- **Job Board:** Discover internships, part-time jobs, and career opportunities
+- **Company Profiles:** Explore companies and organizations hiring students
+- **Business Verification:** Verified company accounts for authentic opportunities
+- **Events Calendar:** Academic events, career fairs, workshops, and networking sessions
+- **Leaderboard:** Recognition system for active contributors and high achievers
 
-## 💸 Business Model
+### Learning & Resources
 
-Our sustainable business model includes:
+- **Course Discovery:** Explore and share educational courses and resources
+- **Learning Spaces:** Dedicated spaces for specific subjects and topics
+- **Q&A System:** Ask and answer academic questions within the community
+- **Resource Sharing:** Share notes, materials, and helpful content
+- **Moments:** Share quick updates and achievements similar to stories
 
-1.  **Freemium Plan (for learners):** Access to basic lessons, community features, and limited social interactions with pay-per-course/podcast options.
-2.  **Premium Monthly Plan:** Unlock all content, access the AI Learning Tutor, unlimited social features, enjoy offline access, and get early access to new features.
-3.  **Pay-Per-Course Model:** One-time payment for lifetime access to specific courses or podcasts, with a generous revenue split for creators.
-4.  **Creator Monetization:** Multiple revenue streams including course sales (70/30 split), award system, sponsored content, and premium community features.
-5.  **Award Economy:** Learners can support creators and helpful community members through a virtual award system.
+### Content & Engagement
 
-## 🎨 Recent Updates & Improvements
+- **Post Types:** Share achievements, tips, questions, projects, milestones, and collaborative opportunities
+- **Rich Media Support:** Upload images, videos, and documents to enhance your posts
+- **Engagement Analytics:** Track likes, comments, shares, saves, and awards on your content
+- **Trending Content:** Discover popular posts and trending discussions
+- **Hashtags & Search:** Find relevant content and connect with like-minded students
 
-### Social Learning Platform
-*   **Complete Social Feed:** Posts, reactions, comments, and sharing functionality
-*   **Advanced Post Types:** Achievement posts, tips, questions, projects, collaborations, and milestones
-*   **Rich Media Integration:** Image and video support for enhanced content sharing
+## 📁 Project Structure
 
-### Enhanced Reaction System
-*   **Multiple Reaction Types:** Like, Love, Celebrate, Support, Insightful, and Funny reactions
-*   **Click-to-React Interface:** Smooth, animated reaction picker with hover previews
-*   **Reaction Analytics:** Track engagement with detailed reaction breakdowns
+```
+studystack/
+├── app/                          # Next.js app directory
+│   ├── activities/              # User activity tracking and notifications
+│   ├── api/                     # API routes and endpoints
+│   ├── auth/                    # Authentication pages and flows
+│   ├── channel/                 # Channel/group communication features
+│   ├── communities/             # Community discovery and browsing
+│   ├── community/               # Individual community pages
+│   ├── companies/               # Company directory and profiles
+│   ├── create/                  # Content creation flows
+│   ├── create-post/             # Post creation interface
+│   ├── discover/                # Content discovery and recommendations
+│   ├── events/                  # Events calendar and management
+│   ├── explore/                 # Explore page for browsing content
+│   ├── home/                    # Main feed and dashboard
+│   ├── leaderboard/             # User rankings and achievements
+│   ├── moments/                 # Story-like quick updates
+│   ├── news/                    # News feed and articles
+│   ├── onboarding/              # New user onboarding flow
+│   ├── opportunities/           # Job and internship listings
+│   ├── posts/                   # Individual post pages
+│   ├── questions/               # Q&A section
+│   ├── search/                  # Global search functionality
+│   ├── settings/                # User settings and preferences
+│   ├── space/                   # Personal or group spaces
+│   ├── users/                   # User profiles and pages
+│   ├── verify-business/         # Business account verification
+│   └── watch/                   # Video content platform
+│
+├── backend/                     # Laravel PHP backend
+│   ├── api/                     # Backend API endpoints
+│   ├── app/                     # Application logic
+│   ├── config/                  # Configuration files
+│   ├── database/                # Database migrations and seeders
+│   ├── routes/                  # API routing
+│   └── public/                  # Public assets
+│
+├── components/                  # Reusable React components
+│   ├── aside-bar.tsx           # Sidebar navigation
+│   ├── bottom-nav.tsx          # Mobile bottom navigation
+│   ├── CreatePostModal.tsx     # Post creation modal
+│   ├── FeedGenerator.tsx       # Dynamic feed generation
+│   ├── FollowButton.tsx        # User follow functionality
+│   ├── JobCard.tsx             # Job listing cards
+│   ├── NotificationPanel.tsx   # Notification system
+│   ├── PostCard.tsx            # Post display component
+│   └── [100+ more components]  # Additional UI components
+│
+├── contexts/                    # React context providers
+├── hooks/                       # Custom React hooks
+├── lib/                         # Utility functions and helpers
+├── stores/                      # State management
+├── types/                       # TypeScript type definitions
+├── public/                      # Static assets
+└── styles/                      # Global styles and themes
+```
 
-### Award & Creator Support System
-*   **Award Functionality:** Allow learners to show appreciation to educators and experts
-*   **Creator Tiers:** Different user types (Student, Educator, Mentor, Expert, Institution)
-*   **Enhanced Creator Profiles:** Verification badges and expertise indicators
+## 🏗️ Technical Architecture
 
-### UI/UX Improvements
-*   **Smooth Animations:** Fade-in effects and smooth transitions throughout the platform
-*   **Responsive Design:** Optimized for all device sizes with mobile-first approach
-*   **Interactive Components:** Custom tooltips, modals, and tabbed interfaces
-*   **Visual Feedback:** Loading states, hover effects, and engagement indicators
+### Frontend Architecture
 
-### Community Features
-*   **Study Groups:** Create and join language and category-specific study groups
-*   **Collaborative Projects:** Work together on learning projects and challenges
-*   **Community Challenges:** Participate in platform-wide learning challenges
-*   **Achievement Sharing:** Celebrate milestones with the community
+- **Framework:** Next.js 15 with App Router for server-side rendering and optimal performance
+- **Language:** TypeScript for type-safe development
+- **Styling:** Tailwind CSS for responsive, utility-first styling
+- **UI Components:** Custom component library with Radix UI primitives
+- **State Management:** React hooks, Context API, and Zustand stores
+- **Real-time Features:** WebSocket integration for live notifications and updates
+- **Animations:** Smooth transitions using CSS animations and Tailwind utilities
 
-## 📈 Value Propositions
+### Backend Architecture
 
-*   **For Learners:** Learn at your own pace, in your preferred format (text, audio, video, gamified), gain deep cultural understanding, and connect with a global learning community.
-*   **For Creators:** Monetize your expertise through multiple channels, build a following, and make a meaningful impact on learners worldwide.
-*   **For Educators:** Leverage social learning dynamics to enhance teaching effectiveness and student engagement.
-*   **AI Support:** Enhance learning and content creation with intelligent assistance.
-*   **Community Impact:** Foster global connections and cultural exchange through shared learning experiences.
+- **Framework:** Laravel (PHP) for robust API development
+- **Database:** PostgreSQL/MySQL with comprehensive schema
+- **Authentication:** Token-based authentication with middleware
+- **API Design:** RESTful API endpoints with proper error handling
+- **File Storage:** Support for image and document uploads
+- **Notifications:** Real-time notification system with WebSocket support
 
-## 🎯 Impact & Goals
+### Infrastructure
 
-Our goal is to break down language and cultural barriers while building the world's most engaging social learning community. Bitroot empowers individuals to become global citizens while providing creators with a comprehensive platform to share their passion, expertise, and earn sustainable income. We aim to be the leading platform for holistic language and culture learning, building a vibrant, supportive, and economically empowering community.
-
-## 🔮 Future Ideas
-
-*   **Advanced AI Integration:** Personalized learning paths and intelligent content recommendations
-*   **Mobile App:** Full-featured iOS and Android applications with offline capabilities
-*   **Passkey / Biometric Login:** Enhanced security with modern authentication methods
-*   **Creator Certification Program:** Verified expert badges and credentialing system
-*   **Language Exchange Marketplace:** Direct connections between native speakers and learners
-*   **NFT-based Achievements:** Blockchain-verified learning credentials and collectible achievements
-*   **Live Streaming:** Real-time classes and cultural events
-*   **Augmented Reality (AR):** Immersive cultural experiences and language practice
+- **Package Manager:** pnpm for efficient dependency management
+- **Deployment:** Vercel-ready configuration for frontend
+- **Development:** Hot reload and fast refresh for optimal DX
+- **Logging:** Custom logging system for debugging and monitoring
+- **Testing:** Test suite setup for quality assurance
 
 ## 🛠️ Technology Stack
 
-*   **Frontend:** Next.js 15, React, TypeScript, Tailwind CSS
-*   **UI Components:** Custom component library with Radix UI primitives
-*   **State Management:** React hooks and context
-*   **Animations:** Custom CSS animations and Tailwind utilities
-*   **Icons:** Lucide React icon library
-*   **Package Manager:** pnpm for efficient dependency management
+**Frontend:**
 
-## Get Started
+- Next.js 15
+- React 18+
+- TypeScript
+- Tailwind CSS
+- Radix UI
+- Lucide React (Icons)
+- Zustand (State Management)
 
-Sign up to start learning, creating, or teaching today! Explore languages, discover cultures, connect with learners worldwide, and join our vibrant social learning community on Bitroot.
+**Backend:**
 
-**For Learners:** Start your language journey, join study groups, and connect with fellow learners.
-**For Creators:** Share your expertise, build your following, and monetize your knowledge.
-**For Educators:** Enhance your teaching with social learning tools and community engagement.
+- Laravel (PHP)
+- PostgreSQL/MySQL
+- WebSocket Server (Node.js)
 
-For questions or support, please contact the Bitroot team through the platform's support page.
+**Development Tools:**
+
+- pnpm
+- ESLint
+- TypeScript Compiler
+- PostCSS
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and pnpm
+- PHP 8.1+ and Composer
+- PostgreSQL or MySQL database
+
+### Installation
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/yourusername/studystack.git
+cd studystack
+```
+
+2. **Install frontend dependencies:**
+
+```bash
+pnpm install
+```
+
+3. **Install backend dependencies:**
+
+```bash
+cd backend
+composer install
+```
+
+4. **Set up environment variables:**
+
+```bash
+# Copy and configure frontend .env
+cp .env.example .env.local
+
+# Copy and configure backend .env
+cd backend
+cp .env.example .env
+```
+
+5. **Run database migrations:**
+
+```bash
+cd backend
+php artisan migrate
+```
+
+6. **Start development servers:**
+
+```bash
+# Frontend (from root directory)
+pnpm dev
+
+# Backend (from backend directory)
+php artisan serve
+
+# WebSocket server (optional, for real-time features)
+node websocket-server.js
+```
+
+### Development Scripts
+
+- `pnpm dev` - Start Next.js development server
+- `pnpm build` - Build production bundle
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+
+## 📱 Key Features by Section
+
+### Home Feed
+
+- Personalized content based on interests and connections
+- Multiple post types (text, images, videos, polls)
+- Real-time updates and notifications
+- Trending topics and popular posts
+
+### Communities
+
+- Subject-specific communities
+- Interest-based groups
+- University/college communities
+- Activity tracking and moderation tools
+
+### Opportunities
+
+- Internship listings
+- Part-time jobs for students
+- Volunteer opportunities
+- Research positions
+- Company profiles and direct applications
+
+### Study Groups
+
+- Create private or public study groups
+- Schedule study sessions
+- Share resources and materials
+- Collaborative note-taking
+- Progress tracking
+
+### Events
+
+- Academic events calendar
+- Workshop and seminar listings
+- Career fair notifications
+- Study session scheduling
+- Event RSVPs and reminders
+
+## 🎯 Goals & Vision
+
+Our mission is to create the ultimate platform for student collaboration and opportunity discovery. StudyStack aims to:
+
+- **Connect Students:** Build meaningful academic relationships and professional networks
+- **Facilitate Learning:** Enable collaborative study and knowledge sharing
+- **Unlock Opportunities:** Help students discover and access internships, jobs, and events
+- **Build Communities:** Foster supportive spaces for students with shared interests
+- **Empower Growth:** Provide tools and resources for academic and career success
+
+## 🔮 Roadmap & Future Features
+
+- **Mobile Applications:** Native iOS and Android apps
+- **AI-Powered Recommendations:** Personalized content and opportunity suggestions
+- **Virtual Study Rooms:** Video chat integration for remote study sessions
+- **Gamification:** Achievement badges, streaks, and reward systems
+- **Advanced Analytics:** Detailed insights for users and communities
+- **Integration APIs:** Connect with LMS platforms and academic tools
+- **Live Streaming:** Host virtual classes and study sessions
+- **Mentorship Program:** Connect students with mentors and advisors
+- **Career Services:** Resume building, interview prep, and career counseling
+
+## 📄 License & Contributing
+
+This project is currently in active development. Contribution guidelines and licensing information will be updated soon.
+
+## 📞 Support
+
+For questions, feedback, or support, please reach out through the platform's contact page or create an issue in the repository.
+
+---
+
+**Built with ❤️ for students, by students.**
