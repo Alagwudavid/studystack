@@ -1,31 +1,31 @@
-import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 // Create transporter using environment variables
 const createTransporter = () => {
-    return nodemailer.createTransport({
-        service: 'gmail', // Use Gmail service instead of manual config
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: process.env.SMTP_USERNAME,
-            pass: process.env.SMTP_PASSWORD,
-        },
-        tls: {
-            rejectUnauthorized: false // Allow self-signed certificates
-        },
-        connectionTimeout: 60000, // 60 seconds
-        greetingTimeout: 30000, // 30 seconds
-        socketTimeout: 60000, // 60 seconds
-    })
-}
+  return nodemailer.createTransport({
+    service: "gmail", // Use Gmail service instead of manual config
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false, // Allow self-signed certificates
+    },
+    connectionTimeout: 60000, // 60 seconds
+    greetingTimeout: 30000, // 30 seconds
+    socketTimeout: 60000, // 60 seconds
+  });
+};
 
 // Email template
 const createEmailTemplate = (email: string) => {
-    return {
-        subject: 'You are on the Waitlist!',
-        html: `
+  return {
+    subject: "You are on the Waitlist!",
+    html: `
             <!DOCTYPE html>
                 <html>
 
@@ -45,7 +45,7 @@ const createEmailTemplate = (email: string) => {
                             <!-- Header -->
                             <div style="text-align: center; margin-bottom: 40px;">
                                 <div style="display: flex; margin: 0px auto;width: fit-content;"><img
-                                        src="https://public-109242794412.s3-accesspoint.us-east-2.amazonaws.com/assets/test_logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIARS33AYGWNQWKJMSE%2F20250905%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250905T211302Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBUaCXVzLWVhc3QtMiJHMEUCIQDDJmh0kI%2FJ8HpypllwhurmTBWS4OKNdSFtCva6dTzH8AIgSc7pzI9PbyMMnMgBUioO8wCiAckTPfBwxDnjtoY0%2B9Qq2gIIfhAAGgwxMDkyNDI3OTQ0MTIiDCqmzV0v5miIkX7uJiq3AhVwHLN6CHFctRwGnuxj%2B%2BxoVxBUEUXCfa9tpRG%2BMgIM0ZDwEnHK4vmbZmPRu7laV1HaNfqSVkpgn%2FZllCPLvLQmUZVsT9GVIyodRNiuFxl3oQ1RlP8d10GYAlHCiOZO0lKwI2AEmSmPNg2ijRIubSfRFQ8%2B2l4ggy6%2BmnktlRz%2BbyzP1vdkcmM1iVWUR7O447gQaS36At5ebDRysXw0nqDtbGL%2FihDdLYoC9PBxACLnu5pSY%2FxvCV7bdVYdNxrLKJdbLWxavAUK8EqoPAi7PgZbQFIdhKRjrc5dn%2BHMaxnhPHMJs25LcAUIXyW1xtGv1F1U8FXMdcLn%2BhHp98%2BpDvzCNghodGq43uyBBSO3JlfK2S54%2FwfYN8i6HvdOhfEIAsV%2F16rJm3QUU2tFTtVIzz3GCoyrPvGnMJ6X7cUGOq0CFY712PIHiJhXaxvupEgC3HFBNSe2K3B9UzT5AYT9bZ%2BNkuvtVLnipu32h%2BNYyPsZSxknRtKE61VqVy7m7006ayJPSEI%2Be0tCX%2BOBCCb2xVH3%2FYrCDOEY%2F6NGvKt3DdJfpy3a4Nct%2BTAPvJHs4BE0lh%2BnDiGuaDvM67B4ry5YdRTHT%2BSh54gKtO2ADKEEjg3YJkV1bZppq%2BJtc%2FUJ47SAFGKto%2Btn1nFjckKImiUWDcrrXZlrrqBCYjLrO8JuOMAVUUXjnz%2FU85c3ZQ5tZm9CyNdaOg2N%2Bnkp3in4Vq%2BzfhQ92D3DDrAfeTgeoa8%2FcD6rAEyHIAA%2FxTu0tOHufPFv103Umkk0aGii2J3kbmA7bsIwncglsLMoqiu8bsPMhM3z5WCivaXT%2BYNhtqeP5w%3D%3D&X-Amz-Signature=3add0d330d9e241037b06b5abc54622bc8181e29055f953e3ba2eb48238467c0&X-Amz-SignedHeaders=host&response-content-disposition=inline" alt="Bitroot Logo"
+                                        src="https://assets.bitroot.com.ng/v1/logo_512.png" alt="Bitroot Logo"
                                         style="width: 40px; height: 40px; margin-right: 12px;" />
                                     <h2
                                         style="color: #1f2937; margin: 0 0 15px 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">
@@ -118,7 +118,7 @@ const createEmailTemplate = (email: string) => {
                 </body>
                 </html>
     `,
-        text: `
+    text: `
         Welcome to Bitroot! 🔥
 
         Thank you for joining our waitlist. You're now part of an exclusive group that will be the first to experience our platform.
@@ -139,110 +139,108 @@ const createEmailTemplate = (email: string) => {
         ---
         You received this email because you joined the Bitroot waitlist.
         If you no longer wish to receive updates, you can unsubscribe at any time.
-    `
-    }
-}
+    `,
+  };
+};
 
 export async function POST(request: NextRequest) {
-    try {
-        const { email } = await request.json()
+  try {
+    const { email } = await request.json();
 
-        if (!email) {
-            return NextResponse.json(
-                { error: 'Email is required' },
-                { status: 400 }
-            )
-        }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: 'Invalid email format' },
-                { status: 400 }
-            )
-        }
-
-        // Create transporter
-        const transporter = createTransporter()
-
-        // Verify SMTP connection with detailed logging
-        try {
-            console.log('🔍 Testing SMTP connection...')
-            console.log('SMTP Config:', {
-                service: 'gmail',
-                host: 'smtp.gmail.com',
-                port: 587,
-                user: process.env.SMTP_USERNAME ? 'configured' : 'missing',
-                pass: process.env.SMTP_PASSWORD ? 'configured' : 'missing'
-            })
-
-            await transporter.verify()
-            console.log('✅ SMTP connection verified successfully')
-        } catch (verifyError: any) {
-            console.error('❌ SMTP verification failed:', {
-                code: verifyError.code,
-                errno: verifyError.errno,
-                syscall: verifyError.syscall,
-                address: verifyError.address,
-                port: verifyError.port,
-                command: verifyError.command
-            })
-
-            // For now, don't fail completely - try to send anyway
-            console.log('⚠️ Skipping verification, attempting to send email directly...')
-
-            // Uncomment this line if you want to fail completely on verification error
-            // return NextResponse.json({ error: 'Email service temporarily unavailable' }, { status: 503 })
-        }
-
-        // Create email content
-        const emailTemplate = createEmailTemplate(email)
-
-        // Send email
-        const mailOptions = {
-            from: {
-                name: 'Bitroot Team',
-                address: process.env.SMTP_USERNAME || 'noreply@bitroot.com'
-            },
-            to: email,
-            subject: emailTemplate.subject,
-            html: emailTemplate.html,
-            text: emailTemplate.text
-        }
-
-        const info = await transporter.sendMail(mailOptions)
-
-        console.log('✅ Confirmation email sent successfully to:', email)
-        console.log('Message ID:', info.messageId)
-
-        return NextResponse.json(
-            {
-                message: 'Confirmation email sent successfully',
-                messageId: info.messageId
-            },
-            { status: 200 }
-        )
-
-    } catch (error: any) {
-        console.error('❌ Error sending confirmation email:', error)
-
-        // Return different errors based on the type
-        if (error.code === 'EAUTH') {
-            return NextResponse.json(
-                { error: 'Email authentication failed' },
-                { status: 500 }
-            )
-        } else if (error.code === 'ECONNECTION') {
-            return NextResponse.json(
-                { error: 'Cannot connect to email server' },
-                { status: 503 }
-            )
-        } else {
-            return NextResponse.json(
-                { error: 'Failed to send confirmation email' },
-                { status: 500 }
-            )
-        }
+    if (!email) {
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
+        { status: 400 }
+      );
+    }
+
+    // Create transporter
+    const transporter = createTransporter();
+
+    // Verify SMTP connection with detailed logging
+    try {
+      console.log("🔍 Testing SMTP connection...");
+      console.log("SMTP Config:", {
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        user: process.env.SMTP_USERNAME ? "configured" : "missing",
+        pass: process.env.SMTP_PASSWORD ? "configured" : "missing",
+      });
+
+      await transporter.verify();
+      console.log("✅ SMTP connection verified successfully");
+    } catch (verifyError: any) {
+      console.error("❌ SMTP verification failed:", {
+        code: verifyError.code,
+        errno: verifyError.errno,
+        syscall: verifyError.syscall,
+        address: verifyError.address,
+        port: verifyError.port,
+        command: verifyError.command,
+      });
+
+      // For now, don't fail completely - try to send anyway
+      console.log(
+        "⚠️ Skipping verification, attempting to send email directly..."
+      );
+
+      // Uncomment this line if you want to fail completely on verification error
+      // return NextResponse.json({ error: 'Email service temporarily unavailable' }, { status: 503 })
+    }
+
+    // Create email content
+    const emailTemplate = createEmailTemplate(email);
+
+    // Send email
+    const mailOptions = {
+      from: {
+        name: "Bitroot Team",
+        address: process.env.SMTP_USERNAME || "noreply@bitroot.com",
+      },
+      to: email,
+      subject: emailTemplate.subject,
+      html: emailTemplate.html,
+      text: emailTemplate.text,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log("✅ Confirmation email sent successfully to:", email);
+    console.log("Message ID:", info.messageId);
+
+    return NextResponse.json(
+      {
+        message: "Confirmation email sent successfully",
+        messageId: info.messageId,
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error("❌ Error sending confirmation email:", error);
+
+    // Return different errors based on the type
+    if (error.code === "EAUTH") {
+      return NextResponse.json(
+        { error: "Email authentication failed" },
+        { status: 500 }
+      );
+    } else if (error.code === "ECONNECTION") {
+      return NextResponse.json(
+        { error: "Cannot connect to email server" },
+        { status: 503 }
+      );
+    } else {
+      return NextResponse.json(
+        { error: "Failed to send confirmation email" },
+        { status: 500 }
+      );
+    }
+  }
 }
