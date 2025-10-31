@@ -1,0 +1,17 @@
+{
+    "name": "bitroot-websocket-server",
+    "version": "1.0.0",
+    "description": "WebSocket server for real-time notifications",
+    "main": "websocket-server.js",
+    "scripts": {
+        "start": "node websocket-server.js",
+        "dev": "nodemon websocket-server.js"
+    },
+    "dependencies": {
+        "ws": "^8.18.3"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    },
+    "packageManager": "pnpm@10.13.1"
+}

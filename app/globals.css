@@ -1,0 +1,482 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --btd-topheader: 56px;
+  --btd-ratio: 0.5625;
+  --btd-reelPlayer-width: calc(100vh - 260px);
+  --btd-reelPlayer-height: min(calc((100vh - 96px) * 0.5625),
+      calc(100vw - 240px - 192px));
+
+  /* Dynamic screen observer variables */
+  --screen-width: 100vw;
+  --screen-breakpoint: 'sm';
+  --dynamic-max-width: 24rem;
+  --max-width-sm: 24rem;
+  --max-width-md: 28rem;
+  --max-width-lg: 36rem;
+  --max-width-xl: 42rem;
+  --max-width-2xl: 48rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@font-face {
+  font-family: 'Bytesized';
+  src: url('../public/assets/Bytesized.ttf') format('truetype');
+}
+
+.bytesized-regular {
+  font-family: "Bytesized", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* body {
+  cursor: url('/cursor/cursor.svg') 12 12, auto;
+}
+
+a,
+button {
+  cursor: url('/cursor/pointer.svg') 12 12, auto;
+} */
+
+/* input, textarea {
+  cursor: url('/cursor/text.svg') 12 12, auto;
+} */
+
+/* optgroup, select, {
+  cursor: url('/cursor/click.svg') 12 12, auto;
+} */
+
+/* * .cursor-pointer-custom {
+  cursor: url('/cursor/pointer.svg') 12 12, auto;
+} */
+
+/* ::-moz-selection {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+::selection {
+  color: var(--primary-foreground);
+  background: var(--primary);
+} */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 95%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 349 71% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 99%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 95%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 349 71% 45%;
+    --radius: 0.75rem;
+
+    --theme-transition-duration: 0.5s;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* New CSS variables from your class names */
+    --plain: 220 13% 91%;
+    /* #EEEDEC */
+    --tertiary: 0 0% 100%;
+    /* #FFFFFF */
+    --indicate: 211 56% 72%;
+    /* #ACC8E5 */
+    --menu: 0 0% 100%;
+    /* #FFFFFF */
+    --bg: 0 0% 100%;
+    /* #FFFFFF */
+    --chat-ui: 220 14% 98%;
+    /* #f9fafb */
+    --chat-ui-base: 220 9% 95%;
+    /* #f3f4f6 */
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 25%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 25%;
+    --popover-foreground: 0 0% 98%;
+    /* --primary: 349 71% 45%; */
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65.1%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 199 89% 48%;
+
+    /* New CSS variables from your class names - Dark theme */
+    --plain: 217 22% 27%;
+    /* --plain: 215 30% 7%; */
+    /* #0d1117 */
+    --tertiary: 267 73% 56%;
+    /* #7037e4 */
+    --indicate: 211 28% 27%;
+    /* #33435B */
+    --menu: 215 30% 7%;
+    /* #0d1117 */
+    --bg: 215 30% 7%;
+    /* #0d1117 */
+    --chat-ui: 0 0% 7%;
+    /* #111111 */
+    --chat-ui-base: 0 0% 10%;
+    /* #191919 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    transition: all var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  html,
+  body,
+  :root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
+      color var(--theme-transition-duration) var(--theme-transition-timing);
+    min-height: 100vh;
+  }
+}
+
+/* Smooth sidebar transitions */
+@keyframes expand-height {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 50%;
+  }
+}
+
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-expandHeight {
+  animation: expand-height 0.3s ease-out forwards;
+}
+
+.stagger-enter {
+  animation: stagger-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Smooth width transitions for sidebar */
+.sidebar-transition {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme transition animations */
+.theme-transitioning {
+  pointer-events: none;
+}
+
+.theme-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center,
+      rgba(14, 165, 233, 0.1) 0%,
+      transparent 70%);
+  z-index: 9999;
+  opacity: 0;
+  animation: themeTransition var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+@keyframes themeTransition {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Smooth transitions for all theme-aware elements */
+.theme-aware {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Custom dark mode styles with transitions */
+.dark {
+  background: #030318;
+  color: #fafafa;
+}
+
+.dark .sidebar-dark {
+  background: #0d1117;
+  border-color: #0ea5e9;
+  transition: all var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.dark .card-dark {
+  background: #0d1117;
+  border-color: rgba(14, 165, 233, 0.2);
+  transition: all var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.dark .accent-dark {
+  color: #8ddeed;
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.dark .primary-dark {
+  background: #0ea5e9;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.dark .surface-dark {
+  background: #0d1117;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Loading spinner for theme transitions */
+.theme-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.theme-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(14, 165, 233, 0.3);
+  border-top: 3px solid #0ea5e9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ripple effect for theme button clicks */
+.theme-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-ripple::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.theme-ripple.active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-custom {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+.scrollbar-custom:hover {
+  /* Firefox */
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.dark .scrollbar-custom:hover {
+  /* Firefox dark mode */
+  scrollbar-color: rgba(75, 85, 99, 0.7) transparent;
+}
+
+/* Webkit Scrollbar Styles */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.scrollbar-custom::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Show scrollbar on hover */
+.scrollbar-custom:hover::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+.dark .scrollbar-custom:hover::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.7);
+}
+
+/* Scrollbar for specific containers with always visible thin scrollbars */
+.scrollbar-thin-visible {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.dark .scrollbar-thin-visible {
+  /* Firefox dark mode */
+  scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
+}
+
+.scrollbar-thin-visible::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin-visible::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.scrollbar-thin-visible::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.dark .scrollbar-thin-visible::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.scrollbar-thin-visible::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.6);
+}
+
+.dark .scrollbar-thin-visible::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.8);
+}
+
+.scrollbar-thin-visible::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@layer utilities {
+
+  /* Dynamic width utilities using CSS variables */
+  .max-w-dynamic {
+    max-width: var(--dynamic-max-width);
+  }
+
+  .max-w-screen-sm {
+    max-width: var(--max-width-sm);
+  }
+
+  .max-w-screen-md {
+    max-width: var(--max-width-md);
+  }
+
+  .max-w-screen-lg {
+    max-width: var(--max-width-lg);
+  }
+
+  .max-w-screen-xl {
+    max-width: var(--max-width-xl);
+  }
+
+  .max-w-screen-2xl {
+    max-width: var(--max-width-2xl);
+  }
+
+  /* Smooth transitions for dynamic width changes */
+  .dynamic-width-transition {
+    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

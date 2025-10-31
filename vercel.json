@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "bitroot-frontend",
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/next"
+        }
+    ],
+    "env": {
+        "NEXT_PUBLIC_BASE_URL": "https://bitroot.com.ng",
+        "NEXT_PUBLIC_API_URL": "https://api.bitroot.com.ng/api",
+        "NEXTAUTH_URL": "https://bitroot.com.ng"
+    }
+}

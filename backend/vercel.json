@@ -1,0 +1,82 @@
+{
+    "version": 2,
+    "name": "bitroot-api",
+    "framework": null,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.2"
+        }
+    },
+    "routes": [
+        {
+            "src": "/(css|js|images)/(.*)",
+            "dest": "public/$1/$2"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "public/favicon.ico"
+        },
+        {
+            "src": "/robots.txt",
+            "dest": "public/robots.txt"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "api/index.php"
+        }
+    ],
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://api.bitroot.com.ng",
+        "FRONTEND_URL": "https://www.bitroot.com.ng",
+        "ASSETS_URL": "https://assets.bitroot.com.ng",
+        "UPLOADS_DISK": "assets",
+        "AWS_ACCESS_KEY_ID": "@aws_access_key_id",
+        "AWS_SECRET_ACCESS_KEY": "@aws_secret_access_key",
+        "AWS_DEFAULT_REGION": "us-east-2",
+        "AWS_BUCKET": "bitblob",
+        "LOG_CHANNEL": "stderr",
+        "DB_CONNECTION": "sqlite",
+        "CACHE_STORE": "array",
+        "SESSION_DRIVER": "array",
+        "SESSION_DOMAIN": ".bitroot.com.ng",
+        "CORS_ALLOWED_ORIGINS": "https://bitroot.com.ng,https://www.bitroot.com.ng,https://api.bitroot.com.ng"
+    },
+    "build": {
+        "env": {
+            "COMPOSER_MIRROR_PATH_REPOS": "1"
+        }
+    },
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "https://www.bitroot.com.ng"
+                },
+                {
+                    "key": "Access-Control-Allow-Credentials",
+                    "value": "true"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "Content-Type, Authorization, X-Requested-With, X-CSRF-Protection"
+                },
+                {
+                    "key": "X-Frame-Options",
+                    "value": "DENY"
+                },
+                {
+                    "key": "X-Content-Type-Options",
+                    "value": "nosniff"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+# =============================================================================
+# STORAGE DIRECTORY SECURITY
+# =============================================================================
+# Secure Laravel storage directory
+
+# Deny access to all files except public storage links
+<FilesMatch "^(?!public/).*">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to log files
+<FilesMatch "\.log$">
+    Require all denied
+</FilesMatch>
+
+# Block access to cache files
+<FilesMatch "\.(cache|tmp)$">
+    Require all denied
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Block directory browsing
+Options -Indexes

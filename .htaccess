@@ -1,0 +1,118 @@
+# =============================================================================
+# BITROOT SECURITY .HTACCESS - ROOT DIRECTORY
+# =============================================================================
+# Comprehensive security configuration for Next.js application
+
+# Prevent access to sensitive files and directories
+<FilesMatch "^\.">
+Require all denied
+</FilesMatch>
+
+# Block access to sensitive file types
+<FilesMatch "\.(env|log|sql|sqlite|db|json|md|yaml|yml|lock|git|gitignore|gitattributes)$">
+Require all denied
+</FilesMatch>
+
+# Prevent access to Node.js specific files
+<FilesMatch "(package\.json|package-lock\.json|pnpm-lock\.yaml|yarn\.lock|tsconfig\.json|next\.config\.|webpack\.config\.)">
+Require all denied
+</FilesMatch>
+
+# Security Headers
+<IfModule mod_headers.c>
+# Prevent MIME type sniffing
+Header always set X-Content-Type-Options "nosniff"
+        
+# XSS Protection
+Header always set X-XSS-Protection "1; mode=block"
+        
+# Clickjacking Protection
+Header always set X-Frame-Options "DENY"
+        
+# Referrer Policy
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+        
+# HTTPS Strict Transport Security (only if using HTTPS)
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        
+# Content Security Policy
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.bitroot.com.ng https://lpkchwfxhawgankunodn.supabase.co https://api.ipify.org https://ipapi.co; frame-ancestors 'none';"
+        
+# Hide server information
+Header unset Server
+Header unset X-Powered-By
+</IfModule>
+
+# Disable server signature
+ServerTokens Prod
+
+# Prevent access to backup files
+<FilesMatch "~$">
+Require all denied
+</FilesMatch>
+
+# Block suspicious user agents
+<IfModule mod_rewrite.c>
+RewriteEngine On
+    
+# Block bad bots and scrapers
+RewriteCond % { HTTP_USER_AGENT } (libwww-perl | wget | python | nikto | curl | Invoke-WebRequest | scan | java | winhttp | clshttp | loader) [NC, OR]
+# RewriteCond % { HTTP_USER_AGENT } (; | < | > | '|"|\)|\(|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond % { HTTP_USER_AGENT } (base64_decode | localhost | 127\.0\.0\.1) [NC, OR]
+RewriteCond % { HTTP_USER_AGENT } (MSIE\s5\.0 | MSIE\s6\.0) [NC]
+RewriteRule ^(.*)$ - [F, L]
+    
+# Block suspicious request methods
+RewriteCond % { REQUEST_METHOD } !^(GET | POST | PUT | DELETE | OPTIONS | HEAD)$ [NC]
+RewriteRule ^(.*)$ - [F, L]
+</IfModule>
+
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Cache optimization for static assets
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/javascript "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType application/x-javascript "access plus 1 month"
+ExpiresByType application/x-shockwave-flash "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Prevent hotlinking
+<IfModule mod_rewrite.c>
+RewriteCond % { HTTP_REFERER } !^$
+RewriteCond % { HTTP_REFERER } !^https?://(www\.)?bitroot\.com\.ng [NC]
+RewriteCond % { HTTP_REFERER } !^https?://(www\.)?api\.bitroot\.com\.ng [NC]
+RewriteRule \.(jpg | jpeg | png | gif | webp | svg)$ - [F]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond % { REQUEST_FILENAME } !-f
+RewriteCond % { REQUEST_FILENAME } !-d
+RewriteCond % { REQUEST_FILENAME } !-l
+RewriteRule . /index.html [L]
+
+</IfModule>
